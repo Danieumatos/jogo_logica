@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Desafio: {{ desafio['descricao'] }}</h1>
+        <form method="POST" action="{{ url_for('verificar_desafio') }}">
+            <textarea name="codigo" rows="10" cols="50"></textarea>
+            <input type="hidden" name="dificuldade" value="{{ dificuldade }}">
+            <input type="hidden" name="nivel" value="{{ nivel }}">
+            <button type="submit">Enviar</button>
+        </form>
+        <button id="botao-dica" class="botao-dica" data-dificuldade="{{ dificuldade }}" data-nivel="{{ nivel }}">Dica</button>
+        <a href="{{ url_for('index') }}">Voltar ao Menu</a>
+    </div>
+
+    {% if mensagem %}
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>{{ mensagem }}</p>
+                <a href="{{ url_for('desafio', dificuldade=dificuldade, nivel=nivel + 1) }}">Próximo Desafio</a>
+            </div>
+        </div>
+    {% elif erro_mensagem %}
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>{{ erro_mensagem }}</p>
+                <button id="fechar-erro">Fechar</button>
+            </div>
+        </div>
+    {% endif %}
+
+    <div id="dica-popup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <p id="dica-texto"></p>
+            <button id="fechar-dica">Fechar</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

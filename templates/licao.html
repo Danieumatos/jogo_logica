@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ licao['titulo'] }}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Lição {{ nivel + 1 }}: {{ licao['titulo'] }}</h1>
+        <div class="lesson">
+            {% for pagina in licao['paginas'] %}
+                <p>{{ pagina }}</p>
+            {% endfor %}
+        </div>
+        <form method="POST" action="{{ url_for('verificar_licao') }}">
+            <textarea name="codigo" rows="10" cols="50"></textarea>
+            <input type="hidden" name="nivel" value="{{ nivel }}">
+            <button type="submit">Enviar</button>
+        </form>
+        <button id="botao-dica" class="botao-dica" data-nivel="{{ nivel }}">Dica</button>
+        <a href="{{ url_for('index') }}">Voltar ao Menu</a>
+    </div>
+
+    {% if mensagem %}
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>{{ mensagem }}</p>
+                <a href="{{ url_for('licao', nivel=nivel + 1) }}">Próxima Lição</a>
+            </div>
+        </div>
+    {% elif erro_mensagem %}
+        <div id="popup" class="popup">
+            <div class="popup-content">
+                <p>{{ erro_mensagem }}</p>
+                <button id="fechar-erro">Fechar</button>
+            </div>
+        </div>
+    {% endif %}
+
+    <div id="dica-popup" class="popup" style="display:none;">
+        <div class="popup-content">
+            <p id="dica-texto"></p>
+            <button id="fechar-dica">Fechar</button>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

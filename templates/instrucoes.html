@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instruções</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Instruções</h1>
+        <div class="instructions">
+            <p>Bem-vindo ao Jogo de Lógica de Programação!</p>
+            <p>Modos:</p>
+            <ul>
+                <li>Modo Principal: Aprenda Python do zero com lições e exercícios simples.</li>
+                <li>Modo Desafio: Teste suas habilidades resolvendo desafios de lógica.</li>
+            </ul>
+            <p>Divirta-se aprendendo programação!</p>
+        </div>
+        <a href="{{ url_for('index') }}">Voltar ao Menu</a>
+    </div>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>

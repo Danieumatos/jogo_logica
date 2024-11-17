@@ -68,6 +68,3 @@ def dica_licao(nivel):
 def dica_desafio(dificuldade, nivel):
     dica = DESAFIOS[dificuldade][nivel].get('dica', 'Nenhuma dica disponível para este desafio.')
     return dica
-
-if __name__ == '__main__':
-    app.run(debug=True)
